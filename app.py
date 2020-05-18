@@ -100,7 +100,6 @@ def index():
                     # x = table.insert_one(mydict) # inserting the dictionary containing the review comments
                     # to the collection
 
-
                     reviews.append(mydict)  # appending the comments to the reviews list
             return render_template('results.html', reviews = reviews[0:(len(reviews)-1)])
         except Exception as e:
@@ -111,10 +110,9 @@ def index():
         return render_template('index.html')
 
 
-
 if __name__ == "__main__":
-    app.run(host = '127.0.0.1', port = 8001, debug = True) # running the app on local machine 8000
-    # app.run(debug=True)
+    # app.run(host = '127.0.0.1', port = 8001, debug = True) # running the app on local machine 8000
+    app.run(debug=True)
 
 
 
