@@ -4,39 +4,75 @@
 <head>
   <meta charset="UTF-8">
   <title>Review Page</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-
-      <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-
+   <!-- <link rel="stylesheet" href="./style.css"> -->
+	<link rel="css/stylesheet" href="./bootstrap.css">
+    
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    
 </head>
 
 <body>
 
-  <div class="table-users">
-   <div class="header">Reviews</div>
+   <div class="container" style="margin-top:35px">
+       <h4> Select Number of Rows </h4>
+       <div class="form-group">
+           <select name="state" id="maxRows" class="form-control" style="width:150px;">
+               <option value="5000">Show All</option>
+               <option value="5">5</option>
+               <option value="10">10</option>
+               <option value="15">15</option>
+               <option value="20">20</option>
+               <option value="50">50</option>
+               <option value="75">75</option>
+               <option value="100">100</option>
+           </select>
+       </div>
 
-   <table cellspacing="0">
-      <tr>
+       <table id = "mytable" class = "table table-bordered table-striped" cellspacing="0">
+       <tr>
          <th>Product</th>
          <th>Name</th>
          <th>Rating</th>
          <th>Comment Heading</th>
          <th width="230">Comments</th>
-      </tr>
+        </tr>
          {% for review in reviews %}
-      <tr>
+        <tr>
           <td>{{review['Product']}}</td>
-         <td>{{review['Name']}}</td>
-         <td>{{review['Rating']}}</td>
-         <td>{{review['CommentHead']}}</td>
-         <td>{{review['Comment']}} </td>
+          <td>{{review['Name']}}</td>
+          <td>{{review['Rating']}}</td>
+          <td>{{review['Comment Heading']}}</td>
+          <td>{{review['Comment']}} </td>
+		 </tr>
        {% endfor %}
+	   
    </table>
+   
+    <div class="pagination-container">
+        <nav>
+          <ul class="pagination">
+            <li data-page="prev" >
+              <span> < <span class="sr-only">(current)</span></span>
+            </li>
+            <!--	Here the JS Function Will Add the Rows -->
+            <li data-page="next" id="prev">
+              <span> > <span class="sr-only">(current)</span></span>
+            </li>
+          </ul>
+        </nav>
+	</div>
 </div>
+
+<!-- End of Container -->
+   
+   <script src="{{url_for('static', filename='jquery-1.11.3.min.js')}}"></script>  
+   <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+   <script src="{{url_for('static',filename='js.js')}}"></script>
+   <script type = "text/javascript">
+       getPagination('#mytable');
+   </script> 
 
 
 
